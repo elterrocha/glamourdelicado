@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de Nail Design Online - Transforme Sua Vida e Conquiste Sua Renda Extra!</title>
+    <!-- Inclui o Tailwind CSS via CDN para estilização rápida e responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Cor de fundo suave */
+            line-height: 1.6;
+        }
+        /* Estilo para rolagem suave ao clicar em links internos */
+        html {
+            scroll-behavior: smooth;
+        }
+        .section-padding {
+            padding: 4rem 1rem; /* Espaçamento padrão para seções */
+        }
+        @media (min-width: 768px) {
+            .section-padding {
+                padding: 6rem 2rem;
+            }
+        }
+        .glow-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .glow-button:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 25px rgba(255, 105, 180, 0.6); /* Efeito de brilho rosa */
+            transform: translateY(-2px);
+        }
+        /* Animações simples para elementos de destaque */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        .animate-fade-in-delay {
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+        /* Estilo para o contêiner do botão flutuante do WhatsApp e CTA */
+        .whatsapp-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Espaço entre a frase e o botão */
+            z-index: 100;
+        }
+        .whatsapp-float {
+            width: 60px;
+            height: 60px;
+            background-color: #25d366; /* Verde WhatsApp */
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        /* Ícone do WhatsApp SVG */
+        .whatsapp-icon {
+            width: 30px;
+            height: 30px;
+            fill: currentColor;
+        }
+        /* Estilo para a frase CTA do WhatsApp */
+        .whatsapp-cta-text {
+            background-color: #f0f2f5; /* Fundo suave para o texto */
+            color: #4B0082; /* Cor roxa para o texto para destaque */
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem; /* Tamanho da fonte um pouco menor */
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            white-space: nowrap; /* Evita quebra de linha */
+            transition: all 0.3s ease;
+        }
+        /* Responsividade para telas menores: oculta o texto CTA */
+        @media (max-width: 768px) {
+            .whatsapp-cta-text {
+                display: none; /* Oculta o texto em telas menores para não poluir */
+            }
+        }
+
+        /* Estilos para o container do grid de certificados e a mensagem */
+        .certificates-content-wrapper { /* Novo wrapper para o grid e mensagem */
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* 120px mínimo por coluna */
+            gap: 10px; /* Espaçamento entre as imagens no grid */
+            width: 100%;
+            padding: 10px; /* Padding interno para o grid */
+        }
+        .certificates-grid img {
+            width: 100%;
+            height: 120px; /* Altura fixa para as miniaturas de certificado */
+            object-fit: contain; /* Ajusta a imagem para caber sem cortar e mantendo a proporção */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .certificates-message {
+            margin-top: 20px;
+            font-size: 1.8rem; /* Tamanho maior para destaque */
+            font-weight: 700;
+            color: #4B0082; /* Cor roxa para a mensagem */
+            opacity: 0; /* Começa invisível */
+            transform: translateY(20px); /* Começa ligeiramente abaixo */
+            transition: opacity 1s ease-out, transform 1s ease-out; /* Transição suave */
+            text-align: center;
+            padding: 10px;
+        }
+        .certificates-message.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Seção de Cabeçalho/Hero (Primeira dobra - Impacto!) -->
+    <header class="bg-gradient-to-r from-pink-500 to-purple-600 text-white py-12 md:py-20 section-padding">
+        <div class="max-w-4xl mx-auto text-center px-4">
+            <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4 animate-fade-in">
+                Cansada da mesma rotina? <span class="text-yellow-300">Transforme Sua Vida e Sua Renda</span> com o Nail Design!
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in-delay">
+                Mesmo que você nunca tenha segurado um pincel, descubra o caminho para a independência financeira e a realização pessoal.
+            </p>
+            <!-- VÍDEO PRINCIPAL DE DEPOIMENTO DE ALUNA -->
+            <div class="my-8 relative w-full" style="padding-bottom: 56.25%;"> <!-- 16:9 Aspect Ratio -->
+                <iframe 
+                    class="absolute top-0 left-0 w-full h-full rounded-lg shadow-xl"
+                    src="https://www.youtube.com/embed/ELYUC5u6CFA" 
+                    title="Depoimento de Aluna - Curso de Nail Design Glamour Delicado" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            
+            <a href="https://app.monetizze.com.br/r/AKK24524940?u=c&pl=PL192503" class="bg-yellow-400 text-purple-800 font-bold py-4 px-8 rounded-full text-lg md:text-xl uppercase hover:bg-yellow-300 glow-button">
+                Sim! Quero Mudar Minha Vida Agora!
+            </a>
+            <p class="mt-4 text-sm opacity-80">Últimas vagas com preço especial!</p>
+        </div>
+    </header>
+
+    <!-- Seção de Storytelling: Mexendo com a Consciência -->
+    <section class="bg-gray-100 section-padding">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-purple-700">Imagine... Uma Nova Realidade para Você!</h2>
+            <p class="text-lg md:text-xl text-gray-700 mb-6">
+                Você já se sentiu presa na mesma rotina? Sonha em ter seu próprio negócio, ser sua própria chefe e ver seu trabalho transformando a vida de outras mulheres? Muitas vezes, o medo do novo ou a falta de oportunidade nos impedem de dar o primeiro passo.
+            </p>
+            <p class="text-lg md:text-xl text-gray-700 mb-6">
+                Mas e se eu te disser que existe um caminho simples, acessível e prazeroso para você <strong>conquistar sua independência financeira e realizar seus sonhos</strong>? O mundo do Nail Design está esperando por você, cheio de oportunidades e clientes que buscam seu talento!
+            </p>
+            <p class="text-lg md:text-xl text-gray-700 mb-8 font-semibold">
+                Este curso foi criado pensando em você, que quer <strong>arriscar para viver uma vida melhor</strong>. É a sua chance de se reinventar, de ter orgulho do que faz e de faturar no seu próprio tempo, sem abrir mão da família. <strong>Veja um pouco do conteúdo do curso por dentro!</strong>
+            </p>
+            <!-- VÍDEO NO LUGAR DO PLACEHOLDER "REALIZE SEUS SONHOS" -->
+            <div class="my-8 relative w-full" style="padding-bottom: 56.25%;"> <!-- 16:9 Aspect Ratio -->
+                <iframe 
+                    class="absolute top-0 left-0 w-full h-full rounded-lg shadow-xl"
+                    src="https://www.youtube.com/embed/G0GDkpgN2jk" 
+                    title="Conteúdo do Curso de Nail Design por dentro" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <a href="https://app.monetizze.com.br/r/AKK24524940?u=c&pl=PL192503" class="bg-pink-600 text-white font-bold py-4 px-8 rounded-full text-lg md:text-xl uppercase hover:bg-pink-700 glow-button">
+                Sim! Eu Mereço Essa Mudança!
+            </a>
+        </div>
+    </section>
+
+    <!-- Seção de 25 Certificados - Destaque! -->
+    <section class="bg-white section-padding">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-pink-600">
+                Seu Futuro Profissional Garantido: <span class="text-purple-700">25 Certificados Válidos!</span>
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-700 mb-6">
+                Ao concluir o curso, você não terá apenas conhecimento, mas a comprovação da sua expertise! Receba um certificado para cada módulo concluído, totalizando 25 certificados que farão seu currículo brilhar e atrairão ainda mais clientes.
+            </p>
+            <p class="text-lg text-gray-600 mb-10">
+                Mais reconhecimento, mais credibilidade, mais portas abertas para você se destacar no mercado de Nail Design!
+            </p>
+            <!-- GRUPO DE IMAGENS DE CERTIFICADOS EM GRID + MENSAGEM -->
+            <div class="certificates-content-wrapper">
+                <div id="certificates-grid" class="certificates-grid">
+                    <!-- As 10 imagens do Imgur aqui, redimensionadas e com fallback -->
+                    <img src="https://i.imgur.com/q5wb5Vx.jpeg" alt="Certificado 1" onerror="this.src='https://placehold.co/120x120/CCCCCC/333333?text=Certificado'">
+                    <img src="https://i.imgur.com/4tvOTcH.jpeg" alt="Certificado 2" onerror="this.src='https://placehold.co/120x120/CCCCCC/333333?text=Certificado'">
+                    <img src="https://i.imgur.com/xDKcABQ.jpeg" alt="Certificado 3" onerror="this.src='https://placehold.co/120x120/CCCCCC/333333?text=Certificado'">
+                    <img src="https://i.imgur.com/RjbfnUE.jpeg" alt="Certificado 4" onerror="this.src='https://placehold.co/120x120/CCCCCC/333333?text=Certificado'">
+                    <img src="https://i.imgur.com/fV5y6g9.jpeg" alt="Certificado 5" onerror="this.src='https://placehold.co/120x120/CCCCCC/333333?text=Certificado'">
+                    <img src="https://i.imgur.com/1zqqVd0.jpeg" alt="Certificado 6" onerror="this.src='https://placehold.co/120x120/CCCCCC/333333?text=Certificado'">
+                    <img src="https://i.imgur.com/LS6TwCh.jpeg" alt="Certificado 7" onerror="this.src='https://placehold.co/120x120/CCCCCC/333333?text=Certificado'">
+                    <img src="https://i.imgur.com/kCgeS2f.jpeg" alt="Certificado 8" onerror="this.src='https://placehold.co/120x120/CCCCCC/333333?text=Certificado'">
+                    <img src="https://i.imgur.com/t2aXq6n.jpeg" alt="Certificado 9" onerror="this.src='https://placehold.co/120x120/CCCCCC/333333?text=Certificado'">
+                    <img src="https://i.imgur.com/xRn6YNl.jpeg" alt="Certificado 10" onerror="this.src='https://placehold.co/120x120/CCCCCC/333333?text=Certificado'">
+                </div>
+                <div id="certificates-message" class="certificates-message">
+                    Seja a próxima a conquistar o certificado de conclusão!
+                </div>
+            </div>
+            <!-- FIM DO GRUPO DE IMAGENS -->
+        </div>
+    </section>
+
+    <!-- Seção de Benefícios (O que o curso oferece) -->
+    <section class="bg-gradient-to-r from-purple-500 to-pink-500 text-white section-padding">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">O que você vai aprender e conquistar na prática:</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-purple-700 bg-opacity-70 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-8 h-8 text-yellow-300 mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                        <h3 class="text-xl font-semibold">Do Zero ao Avançado, Sem Segredos!</h3>
+                    </div>
+                    <p class="text-gray-100">Mesmo que você nunca tenha mexido com unhas, ensinamos tudo do básico ao avançado, passo a passo, de forma descomplicada.</p>
+                </div>
+                <div class="bg-purple-700 bg-opacity-70 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-8 h-8 text-yellow-300 mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                        <h3 class="text-xl font-semibold">Mais Clientes, Mais Lucro!</h3>
+                    </div>
+                    <p class="text-gray-100">Aprenda técnicas diferenciadas para atrair mais clientes e aumentar seu faturamento, destacando-se da concorrência.</p>
+                </div>
+                <div class="bg-purple-700 bg-opacity-70 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-8 h-8 text-yellow-300 mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                        <h3 class="text-xl font-semibold">Trabalhe de Onde Quiser, Com Flexibilidade</h3>
+                    </div>
+                    <p class="text-gray-100">Seja sua própria chefe, faça seus horários e conquiste a liberdade de trabalhar de casa ou no seu próprio espaço.</p>
+                </div>
+                <div class="bg-purple-700 bg-opacity-70 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-8 h-8 text-yellow-300 mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                        <h3 class="text-xl font-semibold">Transforme Vidas (e a Sua!)</h3>
+                    </div>
+                    <p class="text-gray-100">Não é só sobre unhas, é sobre autoestima, beleza e a satisfação de fazer a diferença na vida das suas clientes. E na sua!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Seção de Depoimentos/Prova Social -->
+    <section class="bg-white section-padding">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-pink-600">Histórias de Sucesso Reais:</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                    <p class="italic text-gray-700 mb-4">"Eu estava desempregada e desacreditada. O curso de Nail Design abriu meus olhos para um mundo novo! Hoje, sou minha própria chefe e trabalho no conforto da minha casa. Nunca imaginei que seria possível!"</p>
+                    <div class="flex items-center">
+                        <!-- Imagem de Joana (AI-gerada, aparência brasileira, sorriso natural) -->
+                        <img src="https://images.pexels.com/photos/18260481/pexels-photo-18260481/free-photo-of-mulher-bonita.jpeg?auto=compress&cs=tinysrgb&w=100&h=100" alt="Foto da aluna Joana" class="w-10 h-10 rounded-full mr-3 object-cover">
+                        <span class="font-semibold text-gray-800">Joana P., 28 anos, transformando sua vida</span>
+                    </div>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                    <p class="italic text-gray-700 mb-4">"Eu já fazia umas unhas, mas não tinha confiança para cobrar um preço justo. O curso me deu técnicas profissionais, os 25 certificados e a segurança que eu precisava. Meus clientes aumentaram e meu faturamento triplicou!"</p>
+                    <div class="flex items-center">
+                        <!-- Imagem de Maria (AI-gerada, aparência brasileira, sorriso natural, diferente da Joana) -->
+                        <img src="https://images.pexels.com/photos/17693998/pexels-photo-17693998/free-photo-of-mulher-elegante-jovem-feminino.jpeg?auto=compress&cs=tinysrgb&w=100&h=100" alt="Foto da aluna Maria" class="w-10 h-10 rounded-full mr-3 object-cover">
+                        <span class="font-semibold text-gray-800">Maria D., 35 anos, com mais clientes e lucro</span>
+                    </div>
+                </div>
+                <!-- Add more testimonials here, following the same structure and replacing the images -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de CTA Final (Chamada para Ação) -->
+    <section id="cta-section" class="bg-gradient-to-r from-purple-600 to-pink-500 text-white py-12 md:py-20 section-padding text-center">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                Sua Oportunidade de Ouro para Mudar de Vida Está Aqui!
+            </h2>
+            <p class="text-2xl font-bold text-yellow-300 mb-4">
+                De <span class="line-through">R$ 357,00</span> por apenas <span class="text-4xl">R$ 97,00</span>!
+            </p>
+            
+            <p class="text-lg md:text-xl mb-4 font-semibold text-yellow-300">
+                Atenção: Esta oferta especial encerra em:
+            </p>
+            <div id="countdown" class="text-4xl md:text-5xl font-bold text-white mb-8">
+                --d --h --m --s
+            </div>
+
+            <p class="text-lg md:text-xl mb-8 font-semibold">
+                Vagas limitadas! Garanta a sua agora antes que o preço suba.
+            </p>
+            <p class="text-lg md:text-xl mb-8">
+                Não deixe o medo te impedir de conquistar a liberdade financeira e a realização pessoal que você tanto merece.
+            </p>
+            <!-- Substitua # por seu link de afiliado real para a página de checkout -->
+            <a href="https://app.monetizze.com.br/r/AKK24524940?u=c&pl=PL192503" class="bg-yellow-400 text-purple-800 font-bold py-5 px-10 rounded-full text-xl md:text-2xl uppercase hover:bg-yellow-300 glow-button">
+                Quero Minha Nova Vida com o Nail Design!
+            </a>
+            <p class="mt-6 text-sm opacity-90">Pagamento 100% seguro e acesso imediato para você começar hoje.</p>
+        </div>
+    </section>
+
+    <!-- Seção de Rodapé -->
+    <footer class="bg-gray-800 text-white py-8 text-center">
+        <div class="max-w-4xl mx-auto px-4 text-sm">
+            <p>&copy; 2025 Glamour Delicado. Todos os direitos reservados.</p>
+            <p class="mt-2">
+                <a href="#politica-privacidade" class="text-blue-300 hover:underline text-sm">Política de Privacidade</a> | 
+                <a href="#termos-de-uso" class="text-blue-300 hover:underline text-sm">Termos de Uso</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Contêiner do Botão Flutuante do WhatsApp e CTA -->
+    <div class="whatsapp-container">
+        <span class="whatsapp-cta-text">Dúvidas? Chame a gente no WhatsApp!</span>
+        <!-- Botão Flutuante do WhatsApp -->
+        <!-- Substitua 'SEU_NUMERO_WHATSAPP' pelo seu número completo, incluindo o código do país (ex: 5521999998888) -->
+        <a href="https://api.whatsapp.com/send?phone=553131912330&text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20o%20curso%20de%20Nail%20Design." 
+           class="whatsapp-float" target="_blank" aria-label="Fale conosco pelo WhatsApp">
+            <svg class="whatsapp-icon" viewBox="0 0 24 24">
+                <path d="M12.04 2C7.32 2 3.4 5.92 3.4 10.64c0 1.5.4 2.9.96 4.14L3 21l6.46-1.7c1.1.34 2.24.52 3.4.52 4.72 0 8.64-3.92 8.64-8.64C20.68 5.92 16.76 2 12.04 2zM15 15.34l-.4-.2c-.3-.2-1.7-.8-1.9-1c-.2-.2-.4-.2-.5-.2-.2 0-.4 0-.5.2-.1.2-.4.5-.5.6-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.5-1.5-.9-.8-1.5-1.5-1.7-2-.2-.5 0-.7.2-.9.1-.1.2-.2.3-.3.1-.2.2-.4.3-.5.1-.1.1-.3.2-.4.1-.1 0-.3 0-.4-.1-.2-.5-1-.7-1.4-.2-.5-.4-.4-.5-.4h-.3c-.2 0-.4 0-.6.2-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.7 2.6 4.1 3.6 2.4 1 2.8.8 3.3.7.5-.1 1.4-.6 1.6-.9.2-.2.4-.4.5-.6.1-.1.2-.2.4-.4.1-.2.2-.2.3-.2z"/>
+            </svg>
+        </a>
+    </div>
+
+    <script>
+        // Configura a data final da promoção para 2 horas a partir do momento em que a página é carregada.
+        const now = new Date();
+        now.setHours(now.getHours() + 2); // Adiciona 2 horas à hora atual
+        const endDate = now.getTime(); // Converte para milissegundos
+
+        const countdownElement = document.getElementById('countdown');
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = endDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                countdownElement.innerHTML = "OFERTA ENCERRADA!";
+                // Opcional: Aqui você pode adicionar lógica para desabilitar o botão de compra
+                // ou alterar a mensagem do botão quando a oferta terminar.
+            } else {
+                // Exibe apenas horas, minutos e segundos, já que o foco é em 2 horas.
+                countdownElement.innerHTML = `${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
+            }
+        };
+
+        // Atualiza o contador a cada segundo
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        // Chama a função uma vez para exibir o contador imediatamente ao carregar a página
+        updateCountdown(); 
+
+
+        // Lógica para exibir mensagem de certificado após delay
+        const certificatesMessageElement = document.getElementById('certificates-message');
+
+        // Ativa a mensagem após 3 segundos
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                certificatesMessageElement.classList.add('active');
+            }, 3000); // 3000 milissegundos = 3 segundos
+        });
+    </script>
+
+</body>
+</html>
